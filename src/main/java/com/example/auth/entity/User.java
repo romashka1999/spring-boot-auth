@@ -1,9 +1,6 @@
 package com.example.auth.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,15 +11,15 @@ import java.util.Set;
 
 @Getter
 @Setter
-//@NoArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(
-//        name = "users",
-//        uniqueConstraints = {
-//                @UniqueConstraint(columnNames = "username"),
-//                @UniqueConstraint(columnNames = "email")
-//        }
+        name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        }
 )
 public class User {
     @Id
@@ -47,10 +44,16 @@ public class User {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-//            name = "user_roles",
-//            joinColumns = @JoinColumn(name = "userId"),
-//            inverseJoinColumns = @JoinColumn(name = "roleId")
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "roleId")
      )
     private Set<Role> roles = new HashSet<>();
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
 }

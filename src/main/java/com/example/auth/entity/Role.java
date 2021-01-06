@@ -1,18 +1,15 @@
 package com.example.auth.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
-//@NoArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-//@Table(name = "roles")
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
